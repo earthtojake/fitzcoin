@@ -40,12 +40,18 @@ function MyApp({ Component, pageProps }: AppProps) {
               width={180}
               height={180}
               sx={{
-                transform: "rotateY(45deg)",
-                animation: "rotateAnimation 3.0s linear infinite",
                 overflow: "hidden",
               }}
             >
-              <Image src="/fitzcoin.png" width="100%" height="100%" />
+              <Image
+                sx={{
+                  transform: "rotateY(45deg)",
+                  animation: "rotateAnimation 3.0s linear infinite",
+                }}
+                src="/fitzcoin.png"
+                width="100%"
+                height="100%"
+              />
             </Box>
             <Heading textAlign="center">The UlTiMaTe ShiTCoiN</Heading>
             <Heading fontSize="sm" opacity={0.75}>
