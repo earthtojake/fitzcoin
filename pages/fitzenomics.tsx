@@ -12,7 +12,7 @@ const Fitzenomics: NextPage = () => {
         }
         <Link
           color="blue"
-          href={`https://etherscan.io/address/${FITZCOIN_ADDRESS}`}
+          href={`https://optimistic.etherscan.io/address/${FITZCOIN_ADDRESS}`}
           target="_blank"
         >
           here

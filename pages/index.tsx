@@ -65,6 +65,22 @@ const Home: NextPage = () => {
           ? "Connect Wallet"
           : `Connected: ${shortenIfAddress(account)}`}
       </Button>
+      <Button
+        size="lg"
+        width="100%"
+        colorScheme={data?.ethBalance.isZero() ? "orange" : undefined}
+        rightIcon={data?.ethBalance.isZero() ? <ExternalLinkIcon /> : undefined}
+        disabled={!account || !data}
+      >
+        <LinkOverlay
+          href={`https://optimism.banxa.com?coinType=eth&walletAddress=${account}`}
+          target="_blank"
+        >
+          {!data || data?.ethBalance.isZero()
+            ? "Buy ETH"
+            : `${fromWei(data.ethBalance).toFixed(3)} ETH`}
+        </LinkOverlay>
+      </Button>
       <Modal isCentered isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <ModalOverlay />
         <ModalContent>
@@ -109,7 +125,7 @@ const Home: NextPage = () => {
       />
       <Button width="100%" size="sm" rightIcon={<ExternalLinkIcon />}>
         <LinkOverlay
-          href={`https://app.uniswap.org/#/add/v2/ETH/${FITZCOIN_ADDRESS}`}
+          href={`https://app.uniswap.org/#/add/${FITZCOIN_ADDRESS}/ETH/3000?chain=optimism`}
           target="_blank"
         >
           Add Liquidity

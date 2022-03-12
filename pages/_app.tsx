@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 rightIcon={<ExternalLinkIcon />}
               >
                 <LinkOverlay
-                  href={`https://etherscan.io/address/${FITZCOIN_ADDRESS}`}
+                  href={`https://optimistic.etherscan.io/address/${FITZCOIN_ADDRESS}`}
                   target="_blank"
                 >
                   View Contract

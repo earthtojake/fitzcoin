@@ -6,17 +6,14 @@
     "minor": 0,
     "patch": 0
   },
-  "tags": {},
-  "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
-  "keywords": ["uniswap", "default"],
   "tokens": [
     {
-      "chainId": 42,
-      "address": "0x1f7ffb45b2d31648aafa34d52a20aeef5bc56ebb",
+      "chainId": 10,
+      "address": "0x93978ed3f37a210399a457f6cc95d4d12f7a9746",
       "name": "FitzCoin",
       "symbol": "FITZ",
       "decimals": 18,
-      "logoURI": "http://localhost:3000/fitzcoin.png"
+      "logoURI": "https://www.fitzcoin.xyz/fitzcoin.png"
     }
   ]
 }
