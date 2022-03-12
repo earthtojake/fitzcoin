@@ -11,7 +11,7 @@ import {
   Image,
   LinkOverlay,
   Stack,
-  Text,
+  Box,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FITZCOIN_ADDRESS } from "../constants";
@@ -31,20 +31,22 @@ function MyApp({ Component, pageProps }: AppProps) {
         <div className="gradient stack1"></div>
         <div className="gradient stack2"></div>
         <div className="gradient stack3"></div>
-        <Center p={16}>
+        <Center px={8} py={16}>
           <Stack alignItems={"center"} maxWidth={420}>
             <Heading textAlign="center" size="4xl">
               FiTzCoIn
             </Heading>
-            <Image
+            <Box
+              width={180}
+              height={180}
               sx={{
                 transform: "rotateY(45deg)",
                 animation: "rotateAnimation 3.0s linear infinite",
+                overflow: "hidden",
               }}
-              src="/fitzcoin.png"
-              width={180}
-              height={180}
-            />
+            >
+              <Image src="/fitzcoin.png" width="100%" height="100%" />
+            </Box>
             <Heading textAlign="center">The UlTiMaTe ShiTCoiN</Heading>
             <Heading fontSize="sm" opacity={0.75}>
               Total Supply: 100 FITZ

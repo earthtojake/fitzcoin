@@ -84,7 +84,7 @@ const Home: NextPage = () => {
         disabled={!account || !data}
       >
         <LinkOverlay
-          href={`https://lyra.banxa.com?coinType=eth&walletAddress=${account}`}
+          href={`https://optimism.banxa.com?walletAddress=${account}`}
           target="_blank"
         >
           {!data || data?.ethBalance.isZero()
