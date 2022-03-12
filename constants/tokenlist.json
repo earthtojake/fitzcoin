@@ -1,0 +1,22 @@
+{
+  "name": "FitzCoin List",
+  "timestamp": "2021-12-22T15:35:53.363Z",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "ipfs://QmNa8mQkrNKp1WEEeGjFezDmDeodkWRevGFN8JCV7b4Xir",
+  "keywords": ["uniswap", "default"],
+  "tokens": [
+    {
+      "chainId": 42,
+      "address": "0x1f7ffb45b2d31648aafa34d52a20aeef5bc56ebb",
+      "name": "FitzCoin",
+      "symbol": "FITZ",
+      "decimals": 18,
+      "logoURI": "http://localhost:3000/fitzcoin.png"
+    }
+  ]
+}
