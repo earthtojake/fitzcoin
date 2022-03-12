@@ -27,14 +27,6 @@ import { BigNumber, Contract } from "ethers";
 import { useEffect, useState } from "react";
 import fromWei from "../utils/fromWei";
 
-/**
- * TODO
- * happy 60th footer
- * fitzenomics
- * roadmap
- * deploy erc20
- */
-
 const fetcher =
   (provider: Web3Provider) =>
   async (

@@ -11,6 +11,7 @@ import {
   Image,
   LinkOverlay,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FITZCOIN_ADDRESS } from "../constants";
@@ -45,10 +46,10 @@ function MyApp({ Component, pageProps }: AppProps) {
               height={180}
             />
             <Heading textAlign="center">The UlTiMaTe ShiTCoiN</Heading>
-            <Heading fontSize="md" opacity={0.7}>
+            <Heading fontSize="sm" opacity={0.75}>
               Total Supply: 100 FITZ
             </Heading>
-            <Center pb={6}>
+            <Center pb={12}>
               <Button
                 size="sm"
                 aria-label="Buy"
@@ -87,6 +88,9 @@ function MyApp({ Component, pageProps }: AppProps) {
               </Button>
             </Center>
             <Component {...pageProps} />
+            <Heading fontWeight={"medium"} fontSize="sm" pt={12} opacity={0.75}>
+              Happy 60th birthday Peter Fitz 🎉
+            </Heading>
           </Stack>
         </Center>
       </ChakraProvider>
