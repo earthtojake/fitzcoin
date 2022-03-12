@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>FiTzCoIn, the UlTimAtE ShiTcOiN</title>
+        <title>FitzCoin, The Ultimate Shitcoin</title>
         <meta name="description" content="Buy FITZ to earn FITZ" />
       </Head>
       <ChakraProvider theme={theme}>
@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               width={180}
               height={180}
             />
-            <Heading textAlign="center">The Ultimate Shitcoin</Heading>
+            <Heading textAlign="center">The UlTiMaTe ShiTCoiN</Heading>
             <Heading fontSize="md" opacity={0.7}>
               Total Supply: 100 FITZ
             </Heading>

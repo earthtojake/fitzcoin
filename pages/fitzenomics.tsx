@@ -22,7 +22,14 @@ const Fitzenomics: NextPage = () => {
       <Heading pt={4} size="md">
         Emissions
       </Heading>
-      <Text fontSize="md">The remaining 40 FITZ is </Text>
+      <Text fontSize="md">
+        {
+          "FITZ will be emitted over the next 40 years or until Fitz's demise (whichever comes first). If FITZ lives beyond 100 years, FITZ becomes inflationary, but the FitzDAO considers this to be an unlikely edge case."
+        }
+      </Text>
+      {/* <Text>
+        FITZ can be staked to earn more FITZ. Holders can stake FITZ for a variable lock up period of up to 40 years. Staked FITZ is represented as oldFITZ 
+      </Text> */}
     </Stack>
   );
 };
