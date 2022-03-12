@@ -39,6 +39,12 @@ const fetcher =
     return { fitzBalance, ethBalance };
   };
 
+/**
+ *
+ * Handle optimism connection
+ * Initial airdrop - 20 tokens to FITZ, 40 for sale
+ */
+
 const Home: NextPage = () => {
   const { account, isActive, connect, disconnect, provider } = useAccount();
   const { data, mutate } = useSWR(
@@ -73,7 +79,7 @@ const Home: NextPage = () => {
         disabled={!account || !data}
       >
         <LinkOverlay
-          href={`https://optimism.banxa.com?coinType=eth&walletAddress=${account}`}
+          href={`https://lyra.banxa.com?coinType=eth&walletAddress=${account}`}
           target="_blank"
         >
           {!data || data?.ethBalance.isZero()
