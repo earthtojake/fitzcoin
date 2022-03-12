@@ -1,12 +1,13 @@
 import { getPriorityConnector } from "@web3-react/core";
 import { MetaMask } from "@web3-react/metamask";
+import { AddEthereumChainParameter } from "@web3-react/types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { hooks as metaMaskHooks, metaMask } from "./metaMask";
 import { hooks as walletLinkHooks, walletLink } from "./walletLink";
 
 export enum WalletType {
-  MetaMask,
-  Coinbase,
+  MetaMask = "MetaMask",
+  Coinbase = "Coinbase",
 }
 
 const {
@@ -19,6 +20,17 @@ const {
   [metaMask, metaMaskHooks],
   [walletLink, walletLinkHooks]
 );
+
+const addChainIdParams: AddEthereumChainParameter = {
+  chainId: 10,
+  nativeCurrency: {
+    name: "Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  chainName: "Optimistic Ethereum",
+  rpcUrls: ["https://mainnet.optimism.io"],
+};
 
 export default function useAccount() {
   const priorityConnector = usePriorityConnector();
@@ -33,14 +45,15 @@ export default function useAccount() {
   const account = usePriorityAccount();
   const chainId = usePriorityChainId();
   const provider = usePriorityProvider();
-  const isActive = !!account;
+  const isWrongNetwork = chainId !== 10;
+  const isActive = !!account && !isWrongNetwork;
   const connect = useCallback(async (walletType: WalletType) => {
     switch (walletType) {
       case WalletType.MetaMask:
-        await metaMask.activate();
+        await metaMask.activate(addChainIdParams);
         break;
       case WalletType.Coinbase:
-        await walletLink.activate();
+        await walletLink.activate(addChainIdParams);
         break;
     }
   }, []);
@@ -52,8 +65,9 @@ export default function useAccount() {
     () => ({
       account,
       isActive,
+      isWrongNetwork,
       isActivating,
-      type: isActive
+      type: account
         ? priorityConnector instanceof MetaMask
           ? WalletType.MetaMask
           : WalletType.Coinbase
@@ -62,6 +76,14 @@ export default function useAccount() {
       disconnect,
       provider,
     }),
-    [isActivating, isActive, account, chainId, provider, priorityConnector]
+    [
+      isActivating,
+      isActive,
+      isWrongNetwork,
+      account,
+      chainId,
+      provider,
+      priorityConnector,
+    ]
   );
 }

@@ -40,9 +40,17 @@ const fetcher =
   };
 
 const Home: NextPage = () => {
-  const { account, isActive, isActivating, connect, disconnect, provider } =
-    useAccount();
-  const { data, isValidating, mutate } = useSWR(
+  const {
+    account,
+    type,
+    isActive,
+    isWrongNetwork,
+    isActivating,
+    connect,
+    disconnect,
+    provider,
+  } = useAccount();
+  const { data, isValidating } = useSWR(
     account ? ["balance", account] : null,
     provider ? fetcher(provider as unknown as Web3Provider) : null
   );
@@ -67,13 +75,22 @@ const Home: NextPage = () => {
         colorScheme={!isActivating && !isActive ? "orange" : undefined}
         size="lg"
         width="100%"
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          console.log({ account, type, isWrongNetwork });
+          if (account && type && isWrongNetwork) {
+            connect(type);
+          } else {
+            setIsOpen(true);
+          }
+        }}
         disabled={isActivating}
       >
         {isActivating
           ? "Loading..."
           : !account
           ? "Connect Wallet"
+          : isWrongNetwork
+          ? "Switch Network"
           : `Connected: ${shortenIfAddress(account)}`}
       </Button>
       <Button
