@@ -1,6 +1,6 @@
 import { getPriorityConnector } from "@web3-react/core";
 import { MetaMask } from "@web3-react/metamask";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { hooks as metaMaskHooks, metaMask } from "./metaMask";
 import { hooks as walletLinkHooks, walletLink } from "./walletLink";
 
@@ -14,6 +14,7 @@ const {
   usePriorityAccount,
   usePriorityChainId,
   usePriorityProvider,
+  usePriorityIsActivating,
 } = getPriorityConnector(
   [metaMask, metaMaskHooks],
   [walletLink, walletLinkHooks]
@@ -21,10 +22,13 @@ const {
 
 export default function useAccount() {
   const priorityConnector = usePriorityConnector();
+  const isInit = useRef(false);
+  const isActivating = usePriorityIsActivating() || !isInit.current;
   useEffect(() => {
     if (priorityConnector.connectEagerly) {
-      void priorityConnector.connectEagerly();
+      priorityConnector.connectEagerly();
     }
+    isInit.current = true;
   }, []);
   const account = usePriorityAccount();
   const chainId = usePriorityChainId();
@@ -48,6 +52,7 @@ export default function useAccount() {
     () => ({
       account,
       isActive,
+      isActivating,
       type: isActive
         ? priorityConnector instanceof MetaMask
           ? WalletType.MetaMask
@@ -57,6 +62,6 @@ export default function useAccount() {
       disconnect,
       provider,
     }),
-    [account, chainId, provider, priorityConnector]
+    [isActivating, isActive, account, chainId, provider, priorityConnector]
   );
 }

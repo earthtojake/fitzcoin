@@ -39,15 +39,10 @@ const fetcher =
     return { fitzBalance, ethBalance };
   };
 
-/**
- *
- * Handle optimism connection
- * Initial airdrop - 20 tokens to FITZ, 40 for sale
- */
-
 const Home: NextPage = () => {
-  const { account, isActive, connect, disconnect, provider } = useAccount();
-  const { data, mutate } = useSWR(
+  const { account, isActive, isActivating, connect, disconnect, provider } =
+    useAccount();
+  const { data, isValidating, mutate } = useSWR(
     account ? ["balance", account] : null,
     provider ? fetcher(provider as unknown as Web3Provider) : null
   );
@@ -58,16 +53,26 @@ const Home: NextPage = () => {
   return (
     <>
       <Heading size="sm">You Own</Heading>
-      <Heading color={data?.fitzBalance.gt(0) ? "green" : undefined}>
-        {data ? fromWei(data.fitzBalance) : "0"} FITZ
+      <Heading
+        opacity={isActivating || isValidating ? 0.75 : 1}
+        color={data && data.fitzBalance.gt(0) ? "green" : undefined}
+      >
+        {isActivating || isValidating
+          ? "..."
+          : data
+          ? `${fromWei(data.fitzBalance)} FITZ`
+          : "0 FITZ"}
       </Heading>
       <Button
-        colorScheme={!isActive ? "orange" : undefined}
+        colorScheme={!isActivating && !isActive ? "orange" : undefined}
         size="lg"
         width="100%"
         onClick={() => setIsOpen(true)}
+        disabled={isActivating}
       >
-        {!account
+        {isActivating
+          ? "Loading..."
+          : !account
           ? "Connect Wallet"
           : `Connected: ${shortenIfAddress(account)}`}
       </Button>
