@@ -4,8 +4,6 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>FiTzCoIn, the UlTimAtE ShiTcOiN</title>
-        <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
